@@ -1,784 +1,1076 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Aryan Kumar | Computer Science & Tech Portfolio</title>
-
-    <meta name="description"
-          content="Aryan Kumar's portfolio — Computer Science student exploring software development, UI/UX design, web technologies and AWS cloud computing.">
-
-    <meta name="author" content="Aryan Kumar">
-    <meta name="theme-color" content="#080b18">
-    <meta name="robots" content="index, follow">
-
-    <style>
-        :root {
-            --bg: #080b18;
-            --bg-soft: #0d1426;
-            --card: rgba(18, 29, 51, 0.78);
-            --border: rgba(148, 163, 184, 0.16);
-            --white: #f4f7ff;
-            --muted: #9aa9c3;
-            --blue: #60a5fa;
-            --purple: #a78bfa;
-            --cyan: #67e8f9;
-            --accent: #3b82f6;
-            --radius: 18px;
-            --container: 1080px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-        }
-
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--white);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            background:
-                radial-gradient(
-                    circle at 85% 10%,
-                    rgba(59, 130, 246, 0.12),
-                    transparent 32%
-                ),
-                radial-gradient(
-                    circle at 10% 55%,
-                    rgba(139, 92, 246, 0.08),
-                    transparent 30%
-                );
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:focus-visible {
-            outline: 2px solid var(--cyan);
-            outline-offset: 5px;
-        }
-
-        .container {
-            width: min(var(--container), 90%);
-            margin: auto;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 15px;
-            z-index: 100;
-            padding: 10px 15px;
-            background: var(--accent);
-            color: white;
-            border-radius: 8px;
-        }
-
-        .skip-link:focus {
-            top: 15px;
-        }
-
-        /* Navigation */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(8, 11, 24, 0.88);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .logo {
-            font-size: 1.45rem;
-            font-weight: 850;
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: var(--blue);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 26px;
-        }
-
-        .nav-links a {
-            color: #b7c3d9;
-            font-size: 0.91rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--cyan);
-        }
-
-        /* Hero */
-
-        .hero {
-            min-height: 590px;
-            display: flex;
-            align-items: center;
-            padding: 90px 0;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 850px;
-        }
-
-        .availability {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 8px 14px;
-            border: 1px solid rgba(96, 165, 250, 0.28);
-            border-radius: 30px;
-            background: rgba(37, 99, 235, 0.09);
-            color: #bfdbfe;
-            font-size: 0.82rem;
-            margin-bottom: 27px;
-        }
-
-        .availability-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #60a5fa;
-            box-shadow: 0 0 12px #60a5fa;
-        }
-
-        .eyebrow {
-            color: var(--cyan);
-            font-size: 0.82rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 13px;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 7.5vw, 5.8rem);
-            line-height: 1.06;
-            letter-spacing: -3.5px;
-            margin-bottom: 24px;
-        }
-
-        .gradient {
-            background: linear-gradient(
-                100deg,
-                var(--blue),
-                var(--purple),
-                var(--cyan)
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-description {
-            max-width: 680px;
-            color: var(--muted);
-            font-size: 1.08rem;
-            line-height: 1.9;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 34px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            padding: 12px 21px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            font-size: 0.91rem;
-            font-weight: 700;
-            transition: 0.25s ease;
-        }
-
-        .button-primary {
-            background: linear-gradient(
-                110deg,
-                #2563eb,
-                #6366f1
-            );
-            border-color: transparent;
-            color: white;
-            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.2);
-        }
-
-        .button-secondary {
-            background: rgba(255, 255, 255, 0.035);
-            color: var(--white);
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: var(--blue);
-        }
-
-        /* Section styling */
-
-        section {
-            padding: 85px 0;
-        }
-
-        .section-heading {
-            margin-bottom: 35px;
-        }
-
-        .section-label {
-            color: var(--cyan);
-            font-size: 0.76rem;
-            font-weight: 800;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            line-height: 1.2;
-            letter-spacing: -1px;
-            margin: 9px 0 13px;
-        }
-
-        .section-description {
-            color: var(--muted);
-            max-width: 650px;
-        }
-
-        /* About */
-
-        .about-panel {
-            display: grid;
-            grid-template-columns: 1fr 0.8fr;
-            gap: 35px;
-            align-items: center;
-            padding: 35px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            background: linear-gradient(
-                145deg,
-                rgba(18, 29, 51, 0.9),
-                rgba(13, 20, 37, 0.7)
-            );
-        }
-
-        .about-text p {
-            color: var(--muted);
-            margin-top: 14px;
-        }
-
-        .education-card {
-            padding: 25px;
-            background: rgba(59, 130, 246, 0.07);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            border-radius: 14px;
-        }
-
-        .education-card .small-label {
-            color: var(--blue);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-        }
-
-        .education-card h3 {
-            margin: 12px 0 6px;
-            font-size: 1.12rem;
-        }
-
-        .education-card p {
-            color: var(--muted);
-            font-size: 0.91rem;
-        }
-
-        /* Skills */
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 13px;
-        }
-
-        .skill {
-            padding: 11px 17px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: #d9e6fa;
-            font-size: 0.91rem;
-            transition: 0.2s ease;
-        }
-
-        .skill:hover {
-            border-color: var(--blue);
-            background: rgba(59, 130, 246, 0.12);
-            transform: translateY(-2px);
-        }
-
-        /* Projects */
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            position: relative;
-            padding: 27px;
-            min-height: 265px;
-            background: linear-gradient(
-                145deg,
-                rgba(18, 29, 51, 0.95),
-                rgba(13, 20, 37, 0.9)
-            );
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: 0.25s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(96, 165, 250, 0.55);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-icon {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            background: rgba(59, 130, 246, 0.12);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            border-radius: 13px;
-            font-size: 1.55rem;
-            margin-bottom: 20px;
-        }
-
-        .project-card h3 {
-            font-size: 1.17rem;
-            margin-bottom: 10px;
-        }
-
-        .project-card p {
-            color: var(--muted);
-            font-size: 0.91rem;
-        }
-
-        .project-link {
-            display: inline-block;
-            margin-top: 19px;
-            color: var(--blue);
-            font-size: 0.89rem;
-            font-weight: 700;
-        }
-
-        .project-link:hover {
-            color: var(--cyan);
-        }
-
-        /* Contact */
-
-        .contact-panel {
-            padding: 55px 25px;
-            text-align: center;
-            background:
-                radial-gradient(
-                    ellipse at top,
-                    rgba(59, 130, 246, 0.17),
-                    transparent 65%
-                ),
-                #10192c;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-        }
-
-        .contact-panel h2 {
-            max-width: 650px;
-            margin: 12px auto;
-        }
-
-        .contact-panel p {
-            color: var(--muted);
-            max-width: 570px;
-            margin: auto;
-        }
-
-        .contact-buttons {
-            justify-content: center;
-            margin-top: 28px;
-        }
-
-        /* Footer */
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 27px 0;
-            text-align: center;
-            color: #8291aa;
-            font-size: 0.85rem;
-        }
-
-        footer p + p {
-            margin-top: 5px;
-        }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Aryan Kumar | Portfolio</title>
+  <meta name="description" content="Aryan Kumar - Computer Science Engineering student, exploring software development, UI/UX design and cloud technology.">
+
+  <style>
+    /* =========================
+       GLOBAL SETTINGS
+    ========================= */
+
+    :root {
+      --bg: #080b18;
+      --bg-soft: #0d1426;
+      --card: rgba(18, 29, 51, 0.78);
+      --border: rgba(148, 163, 184, 0.16);
+
+      --white: #f4f7ff;
+      --muted: #9aa9c3;
+
+      --blue: #60a5fa;
+      --purple: #a78bfa;
+      --cyan: #67e8f9;
+      --accent: #3b82f6;
+
+      --radius: 18px;
+      --container: 1080px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 5%, rgba(59,130,246,.12), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(167,139,250,.10), transparent 28%),
+        var(--bg);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(90%, var(--container));
+      margin: auto;
+    }
+
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 35px;
+    }
+
+    .section-heading span {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(28px, 4vw, 38px);
+      margin-top: 8px;
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 10px;
+      max-width: 650px;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 11, 24, .88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 650;
+      font-size: 14px;
+      transition: transform .25s, background .25s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      background: linear-gradient(110deg, var(--accent), #7c3aed);
+      color: white;
+      box-shadow: 0 8px 25px rgba(59,130,246,.2);
+    }
+
+    .button-outline {
+      border: 1px solid var(--border);
+      color: var(--white);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 610px;
+      display: flex;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 14px;
+      border: 1px solid rgba(103,232,249,.22);
+      border-radius: 30px;
+      background: rgba(103,232,249,.06);
+      color: var(--cyan);
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .availability-dot {
+      width: 8px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #34d399;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 70px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        100deg,
+        var(--blue),
+        var(--purple),
+        var(--cyan)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-note {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 25px;
+      backdrop-filter: blur(12px);
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(103,232,249,.35);
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-text p + p {
+      margin-top: 15px;
+    }
+
+    .info-card h3 {
+      margin-bottom: 18px;
+      font-size: 19px;
+    }
+
+    .info-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .info-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 17px;
+      font-size: 18px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      padding: 8px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: rgba(96,165,250,.07);
+      color: #dbeafe;
+      font-size: 13px;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .project-number {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .project-tech span {
+      font-size: 11px;
+      color: var(--cyan);
+      background: rgba(103,232,249,.07);
+      padding: 5px 9px;
+      border-radius: 6px;
+    }
+
+    .project-link {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-card {
+      text-align: center;
+      padding: 45px 25px;
+      background:
+        radial-gradient(circle at top, rgba(59,130,246,.13), transparent 65%),
+        var(--card);
+    }
+
+    .contact-card h2 {
+      font-size: clamp(26px, 4vw, 38px);
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 25px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================= */
+
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .section {
+        padding: 55px 0;
+      }
+
+      .nav-container {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        padding: 20px 5%;
+        background: #0d1426;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 15px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 75px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .contact-card {
+        padding: 32px 18px;
+      }
+
+      .contact-links {
+        flex-direction: column;
+      }
+
+      .contact-links .button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        width: 92%;
+      }
+
+      .hero h1 {
+        font-size: 37px;
+      }
+
+      .section-heading h2 {
+        font-size: 27px;
+      }
+
+      .card {
+        padding: 19px;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-    <a href="#main-content" class="skip-link">
-        Skip to main content
-    </a>
-
-    <!-- Navigation -->
-
-    <header>
-        <div class="container">
-            <nav aria-label="Main navigation">
-
-                <a href="#" class="logo">
-                    ARYAN<span>.AK</span>
-                </a>
-
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-
-            </nav>
-        </div>
-    </header>
-
-    <main id="main-content">
-
-        <!-- Hero -->
-
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-
-                    <div class="availability">
-                        <span class="availability-dot"></span>
-                        CSE STUDENT · EXPLORING TECHNOLOGY
-                    </div>
-
-                    <p class="eyebrow">
-                        HELLO, WELCOME TO MY PORTFOLIO
-                    </p>
-
-                    <h1>
-                        Hi, I'm Aryan.<br>
-                        <span class="gradient">
-                            Building my future in tech.
-                        </span>
-                    </h1>
-
-                    <p class="hero-description">
-                        I'm a Computer Science and Engineering student
-                        exploring software development, user-centered
-                        design, and cloud computing. I enjoy learning
-                        new technologies and turning ideas into
-                        practical projects.
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="#projects"
-                           class="button button-primary">
-                            Explore My Projects ↗
-                        </a>
-
-                        <a href="#contact"
-                           class="button button-secondary">
-                            Let's Connect
-                        </a>
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- About -->
-
-        <section id="about">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="section-label">01 / ABOUT ME</span>
-                    <h2>Learning today. Building for tomorrow.</h2>
-                    <p class="section-description">
-                        A little about my education, interests, and
-                        journey into technology.
-                    </p>
-                </div>
-
-                <div class="about-panel">
-
-                    <div class="about-text">
-                        <h3>Curious mind. Growing skill set.</h3>
-
-                        <p>
-                            I'm pursuing a B.Tech in Computer Science
-                            and Engineering at IIMT College of Engineering.
-                            I'm developing my programming fundamentals
-                            while exploring UI/UX design, web technologies,
-                            and AWS cloud services.
-                        </p>
-
-                        <p>
-                            I believe in learning by building. My goal
-                            is to strengthen my technical knowledge,
-                            work on meaningful projects, and grow as
-                            a technology professional.
-                        </p>
-                    </div>
-
-                    <div class="education-card">
-
-                        <span class="small-label">
-                            Education
-                        </span>
-
-                        <h3>
-                            B.Tech — Computer Science & Engineering
-                        </h3>
-
-                        <p>
-                            IIMT College of Engineering
-                        </p>
-
-                        <p>
-                            2025 – 2029
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Skills -->
-
-        <section id="skills">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="section-label">02 / MY TOOLKIT</span>
-                    <h2>Skills I'm developing</h2>
-                    <p class="section-description">
-                        My growing foundation in programming,
-                        design, and digital technologies.
-                    </p>
-                </div>
-
-                <div class="skills">
-
-                    <span class="skill">C Programming</span>
-                    <span class="skill">Python Basics</span>
-                    <span class="skill">C++ — Learning</span>
-                    <span class="skill">HTML & CSS</span>
-                    <span class="skill">UI/UX Design</span>
-                    <span class="skill">Git Basics</span>
-                    <span class="skill">AWS — Learning</span>
-                    <span class="skill">Problem Solving</span>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Projects -->
-
-        <section id="projects">
-            <div class="container">
-
-                <div class="section-heading">
-                    <span class="section-label">03 / MY WORK</span>
-                    <h2>Projects & explorations</h2>
-                    <p class="section-description">
-                        A reflection of what I'm learning,
-                        experimenting with, and building.
-                    </p>
-                </div>
-
-                <div class="projects-grid">
-
-                    <article class="project-card">
-
-                        <div class="project-icon"
-                             aria-hidden="true">
-                            ☁️
-                        </div>
-
-                        <h3>AWS Cloud Resume</h3>
-
-                        <p>
-                            A personal portfolio website developed
-                            to explore web technologies, cloud hosting,
-                            and serverless architecture.
-                        </p>
-
-                        <a class="project-link"
-                           href="https://github.com/aryanak-dev/aws-cloud-resume"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            View GitHub Repository ↗
-                        </a>
-
-                    </article>
-
-                    <article class="project-card">
-
-                        <div class="project-icon"
-                             aria-hidden="true">
-                            🎨
-                        </div>
-
-                        <h3>UI/UX Design</h3>
-
-                        <p>
-                            Exploring user-friendly interfaces,
-                            visual hierarchy, design thinking,
-                            and website design practice.
-                        </p>
-
-                    </article>
-
-                    <article class="project-card">
-
-                        <div class="project-icon"
-                             aria-hidden="true">
-                            💻
-                        </div>
-
-                        <h3>Programming Practice</h3>
-
-                        <p>
-                            Strengthening programming fundamentals
-                            through coding exercises and
-                            small practical projects.
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- Contact -->
-
-        <section id="contact">
-            <div class="container">
-
-                <div class="contact-panel">
-
-                    <span class="section-label">
-                        04 / LET'S CONNECT
-                    </span>
-
-                    <h2>
-                        Good ideas start with a conversation.
-                    </h2>
-
-                    <p>
-                        Interested in technology, creative ideas,
-                        collaboration, and opportunities to learn
-                        and grow.
-                    </p>
-
-                    <div class="hero-buttons contact-buttons">
-
-                        <!-- Replace with your actual LinkedIn profile URL -->
-
-                        <a class="button button-primary"
-                           href="YOUR_LINKEDIN_PROFILE_URL"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            LinkedIn Profile ↗
-                        </a>
-
-                        <a class="button button-secondary"
-                           href="https://github.com/aryanak-dev"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            GitHub Profile ↗
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-
-    <footer>
-        <div class="container">
-
-            <p>
-                © <span id="year"></span> Aryan Kumar.
-                Designed with curiosity.
-            </p>
-
-            <p>
-                Cloud Resume Challenge · Learning by building.
-            </p>
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <header class="navbar">
+    <div class="container nav-container">
+
+      <a href="#home" class="logo">
+        Aryan<span>AK.</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+
+    <section class="hero" id="home">
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="availability">
+            <span class="availability-dot"></span>
+            Computer Science Engineering Student
+          </div>
+
+          <h1>
+            Hi, I'm Aryan Kumar.
+            <br>
+            <span class="gradient-text">
+              Building my future in tech.
+            </span>
+          </h1>
+
+          <p class="hero-description">
+            I'm a Computer Science Engineering student passionate
+            about technology, problem-solving, UI/UX design and
+            software development. I'm continuously learning,
+            experimenting and building projects to turn ideas
+            into practical solutions.
+          </p>
+
+          <div class="hero-actions">
+
+            <a href="#projects" class="button button-primary">
+              Explore My Work →
+            </a>
+
+            <a href="#contact" class="button button-outline">
+              Get In Touch
+            </a>
+
+          </div>
+
+          <p class="hero-note">
+            Learning today. Building tomorrow.
+          </p>
 
         </div>
-    </footer>
 
-    <script>
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
-    </script>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================= -->
+
+    <section class="section" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>Get to know me</span>
+          <h2>About Me</h2>
+          <p>
+            A little introduction about my education,
+            interests and professional journey.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="card">
+            <div class="about-text">
+
+              <p>
+                I'm Aryan Kumar, a B.Tech Computer Science
+                and Engineering student at IIMT College
+                of Engineering, affiliated with AKTU.
+              </p>
+
+              <p>
+                I have an interest in programming,
+                web development, UI/UX design and
+                emerging technologies.
+              </p>
+
+              <p>
+                Currently, I'm strengthening my technical
+                foundation through practical projects,
+                continuous learning and hands-on exploration
+                of cloud computing.
+              </p>
+
+              <p>
+                My goal is to become a skilled technology
+                professional who can create useful,
+                meaningful and user-friendly digital products.
+              </p>
+
+            </div>
+          </div>
+
+
+          <div class="card info-card">
+
+            <h3>Education & Interests</h3>
+
+            <div class="info-item">
+              <span class="info-label">Degree</span>
+              <span class="info-value">
+                B.Tech — Computer Science Engineering
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Institution</span>
+              <span class="info-value">
+                IIMT College of Engineering
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">University</span>
+              <span class="info-value">
+                Dr. A.P.J. Abdul Kalam Technical University
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Interests</span>
+              <span class="info-value">
+                UI/UX · Web Development · Cloud Computing
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         SKILLS SECTION
+    ========================= -->
+
+    <section class="section" id="skills">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>What I work with</span>
+          <h2>My Skills</h2>
+          <p>
+            Technologies and skills I'm learning
+            and developing through practice.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+
+          <div class="card skill-card">
+            <h3>Programming</h3>
+
+            <div class="skill-tags">
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">Python — Basics</span>
+              <span class="skill-tag">C++ — Learning</span>
+            </div>
+          </div>
+
+
+          <div class="card skill-card">
+            <h3>Web & Design</h3>
+
+            <div class="skill-tags">
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">CSS</span>
+              <span class="skill-tag">UI/UX Design</span>
+              <span class="skill-tag">Responsive Design</span>
+            </div>
+          </div>
+
+
+          <div class="card skill-card">
+            <h3>Cloud & Tools</h3>
+
+            <div class="skill-tags">
+              <span class="skill-tag">AWS — Learning</span>
+              <span class="skill-tag">Git Basics</span>
+              <span class="skill-tag">MS Excel</span>
+              <span class="skill-tag">PowerPoint</span>
+            </div>
+          </div>
+
+
+          <div class="card skill-card">
+            <h3>Professional Skills</h3>
+
+            <div class="skill-tags">
+              <span class="skill-tag">Communication</span>
+              <span class="skill-tag">Teamwork</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Analytical Thinking</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         PROJECTS SECTION
+    ========================= -->
+
+    <section class="section" id="projects">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>What I'm building</span>
+          <h2>Featured Projects</h2>
+          <p>
+            A selection of my practical work
+            and ongoing learning projects.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- PROJECT 1 -->
+
+          <article class="card project-card">
+
+            <div class="project-number">
+              PROJECT 01
+            </div>
+
+            <h3>AWS Cloud Resume</h3>
+
+            <p>
+              A personal portfolio project focused on
+              presenting my skills and learning journey
+              while exploring cloud technologies and
+              AWS-based deployment.
+            </p>
+
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>GitHub Pages</span>
+              <span>AWS Learning</span>
+            </div>
+
+            <a
+              href="https://aryanak-dev.github.io/aws-cloud-resume/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+            >
+              View Live Project →
+            </a>
+
+          </article>
+
+
+          <!-- PROJECT 2 -->
+
+          <article class="card project-card">
+
+            <div class="project-number">
+              PROJECT 02
+            </div>
+
+            <h3>Student Result Portal</h3>
+
+            <p>
+              An ongoing college mini-project designed
+              to provide student and administrator
+              portals for managing and viewing
+              academic results.
+            </p>
+
+            <div class="project-tech">
+              <span>Web Development</span>
+              <span>Frontend</span>
+              <span>Database — Planned</span>
+            </div>
+
+            <span class="project-link">
+              Currently In Progress
+            </span>
+
+          </article>
+
+
+          <!-- PROJECT 3 -->
+
+          <article class="card project-card">
+
+            <div class="project-number">
+              PROJECT 03
+            </div>
+
+            <h3>UI/UX Design Practice</h3>
+
+            <p>
+              Exploring website design principles,
+              visual hierarchy, user experience
+              and interface design through
+              practical learning.
+            </p>
+
+            <div class="project-tech">
+              <span>UI/UX</span>
+              <span>Web Design</span>
+              <span>ChatGPT</span>
+            </div>
+
+            <span class="project-link">
+              Learning & Exploring
+            </span>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         CONTACT SECTION
+    ========================= -->
+
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="card contact-card">
+
+          <div class="section-heading">
+            <span>Let's connect</span>
+          </div>
+
+          <h2>
+            Have an idea?
+            <span class="gradient-text">
+              Let's connect.
+            </span>
+          </h2>
+
+          <p>
+            I'm always interested in connecting with
+            people, exploring opportunities,
+            learning new technologies and
+            collaborating on meaningful projects.
+          </p>
+
+          <div class="contact-links">
+
+            <!-- Replace with your actual email -->
+            <a
+              href="mailto:YOUR_EMAIL@example.com"
+              class="button button-primary"
+            >
+              Send Me an Email
+            </a>
+
+            <!-- Replace with your LinkedIn profile URL -->
+            <a
+              href="YOUR_LINKEDIN_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-outline"
+            >
+              LinkedIn ↗
+            </a>
+
+            <!-- GitHub profile -->
+            <a
+              href="https://github.com/aryanak-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-outline"
+            >
+              GitHub ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+    <div class="container">
+
+      <p>
+        © <span id="currentYear"></span>
+        Aryan Kumar. All rights reserved.
+      </p>
+
+      <p>
+        Designed and built with curiosity and passion.
+      </p>
+
+    </div>
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    // Mobile navigation menu
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+
+      const isOpen = navLinks.classList.toggle("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+      );
+
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+
+    });
+
+
+    // Close menu after clicking a navigation link
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", function () {
+
+        navLinks.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        menuToggle.textContent = "☰";
+
+      });
+
+    });
+
+
+    // Automatically update copyright year
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+  </script>
 
 </body>
 </html>
