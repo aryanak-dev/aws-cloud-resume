@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aryan Kumar | Cloud & Tech Portfolio</title>
+    <title>Aryan Kumar | Computer Science & Tech Portfolio</title>
 
     <meta name="description"
-          content="Aryan Kumar's personal portfolio, showcasing computer science, web development, and cloud computing interests.">
+          content="Aryan Kumar's portfolio — Computer Science student exploring software development, UI/UX design, web technologies and AWS cloud computing.">
+
+    <meta name="author" content="Aryan Kumar">
+    <meta name="theme-color" content="#080b18">
+    <meta name="robots" content="index, follow">
 
     <style>
+        :root {
+            --bg: #080b18;
+            --bg-soft: #0d1426;
+            --card: rgba(18, 29, 51, 0.78);
+            --border: rgba(148, 163, 184, 0.16);
+            --white: #f4f7ff;
+            --muted: #9aa9c3;
+            --blue: #60a5fa;
+            --purple: #a78bfa;
+            --cyan: #67e8f9;
+            --accent: #3b82f6;
+            --radius: 18px;
+            --container: 1080px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,13 +37,34 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
             font-family: "Segoe UI", Arial, sans-serif;
-            background: #080d1b;
-            color: #eef2ff;
+            background: var(--bg);
+            color: var(--white);
             line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background:
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(59, 130, 246, 0.12),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 10% 55%,
+                    rgba(139, 92, 246, 0.08),
+                    transparent 30%
+                );
         }
 
         a {
@@ -32,14 +72,40 @@
             text-decoration: none;
         }
 
+        a:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 5px;
+        }
+
         .container {
-            width: min(1080px, 90%);
+            width: min(var(--container), 90%);
             margin: auto;
         }
 
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 15px;
+            z-index: 100;
+            padding: 10px 15px;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .skip-link:focus {
+            top: 15px;
+        }
+
+        /* Navigation */
+
         header {
-            border-bottom: 1px solid #1e293b;
-            background: rgba(8, 13, 27, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(8, 11, 24, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
 
         nav {
@@ -51,267 +117,507 @@
         }
 
         .logo {
-            font-size: 1.35rem;
-            font-weight: 800;
+            font-size: 1.45rem;
+            font-weight: 850;
             letter-spacing: -1px;
         }
 
         .logo span {
-            color: #60a5fa;
+            color: var(--blue);
         }
 
-        nav a {
-            color: #b8c3da;
-            font-size: 0.92rem;
-            margin-left: 20px;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 26px;
         }
 
-        nav a:hover {
-            color: #60a5fa;
+        .nav-links a {
+            color: #b7c3d9;
+            font-size: 0.91rem;
+            transition: color 0.2s ease;
         }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        /* Hero */
 
         .hero {
-            padding: 100px 0 80px;
-            background:
-                radial-gradient(ellipse at 80% 20%,
-                rgba(37, 99, 235, 0.22), transparent 48%);
+            min-height: 590px;
+            display: flex;
+            align-items: center;
+            padding: 90px 0;
+            position: relative;
         }
 
-        .tag {
-            display: inline-block;
-            padding: 7px 13px;
-            border: 1px solid #284776;
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border: 1px solid rgba(96, 165, 250, 0.28);
             border-radius: 30px;
-            color: #93c5fd;
-            background: #101d36;
-            font-size: 0.83rem;
-            margin-bottom: 25px;
+            background: rgba(37, 99, 235, 0.09);
+            color: #bfdbfe;
+            font-size: 0.82rem;
+            margin-bottom: 27px;
+        }
+
+        .availability-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #60a5fa;
+            box-shadow: 0 0 12px #60a5fa;
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 13px;
         }
 
         h1 {
-            font-size: clamp(2.8rem, 7vw, 5.2rem);
-            line-height: 1.1;
-            letter-spacing: -3px;
-            margin-bottom: 22px;
+            font-size: clamp(3rem, 7.5vw, 5.8rem);
+            line-height: 1.06;
+            letter-spacing: -3.5px;
+            margin-bottom: 24px;
         }
 
         .gradient {
-            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            background: linear-gradient(
+                100deg,
+                var(--blue),
+                var(--purple),
+                var(--cyan)
+            );
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero p {
-            max-width: 650px;
-            color: #aab6ce;
+        .hero-description {
+            max-width: 680px;
+            color: var(--muted);
             font-size: 1.08rem;
+            line-height: 1.9;
         }
 
-        .buttons {
+        .hero-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
-            margin-top: 32px;
+            margin-top: 34px;
         }
 
         .button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
             padding: 12px 21px;
-            border-radius: 9px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 0.91rem;
             font-weight: 700;
-            border: 1px solid #334155;
-            transition: 0.2s;
+            transition: 0.25s ease;
         }
 
-        .button.primary {
-            background: #3b82f6;
-            border-color: #3b82f6;
+        .button-primary {
+            background: linear-gradient(
+                110deg,
+                #2563eb,
+                #6366f1
+            );
+            border-color: transparent;
             color: white;
+            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.2);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.035);
+            color: var(--white);
         }
 
         .button:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
+            transform: translateY(-3px);
+            border-color: var(--blue);
         }
 
+        /* Section styling */
+
         section {
-            padding: 65px 0;
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
         }
 
         .section-label {
-            color: #60a5fa;
-            text-transform: uppercase;
-            font-size: 0.78rem;
+            color: var(--cyan);
+            font-size: 0.76rem;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
         }
 
         h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin: 8px 0 14px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin: 9px 0 13px;
         }
 
-        .muted {
-            color: #aab6ce;
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
         }
 
-        .cards {
+        /* About */
+
+        .about-panel {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
-            margin-top: 28px;
+            grid-template-columns: 1fr 0.8fr;
+            gap: 35px;
+            align-items: center;
+            padding: 35px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: linear-gradient(
+                145deg,
+                rgba(18, 29, 51, 0.9),
+                rgba(13, 20, 37, 0.7)
+            );
         }
 
-        .card {
-            background: linear-gradient(145deg, #121d32, #0d1425);
-            border: 1px solid #263650;
-            border-radius: 16px;
+        .about-text p {
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        .education-card {
             padding: 25px;
+            background: rgba(59, 130, 246, 0.07);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 14px;
         }
 
-        .card h3 {
-            margin: 12px 0 8px;
+        .education-card .small-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
         }
 
-        .card p {
-            color: #aab6ce;
-            font-size: 0.94rem;
+        .education-card h3 {
+            margin: 12px 0 6px;
+            font-size: 1.12rem;
         }
 
-        .card-icon {
-            font-size: 1.8rem;
+        .education-card p {
+            color: var(--muted);
+            font-size: 0.91rem;
         }
+
+        /* Skills */
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 11px;
-            margin-top: 25px;
+            gap: 13px;
         }
 
         .skill {
-            padding: 9px 14px;
-            background: #111d33;
-            border: 1px solid #2b3c58;
-            border-radius: 8px;
-            color: #d5e2f8;
-            font-size: 0.9rem;
+            padding: 11px 17px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #d9e6fa;
+            font-size: 0.91rem;
+            transition: 0.2s ease;
         }
 
-        .contact {
-            text-align: center;
-            padding: 55px 25px;
-            background: linear-gradient(135deg, #111d33, #11152b);
-            border: 1px solid #293a56;
-            border-radius: 20px;
+        .skill:hover {
+            border-color: var(--blue);
+            background: rgba(59, 130, 246, 0.12);
+            transform: translateY(-2px);
         }
+
+        /* Projects */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            padding: 27px;
+            min-height: 265px;
+            background: linear-gradient(
+                145deg,
+                rgba(18, 29, 51, 0.95),
+                rgba(13, 20, 37, 0.9)
+            );
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: 0.25s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(96, 165, 250, 0.55);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 13px;
+            font-size: 1.55rem;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 1.17rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 0.91rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 19px;
+            color: var(--blue);
+            font-size: 0.89rem;
+            font-weight: 700;
+        }
+
+        .project-link:hover {
+            color: var(--cyan);
+        }
+
+        /* Contact */
+
+        .contact-panel {
+            padding: 55px 25px;
+            text-align: center;
+            background:
+                radial-gradient(
+                    ellipse at top,
+                    rgba(59, 130, 246, 0.17),
+                    transparent 65%
+                ),
+                #10192c;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+        }
+
+        .contact-panel h2 {
+            max-width: 650px;
+            margin: 12px auto;
+        }
+
+        .contact-panel p {
+            color: var(--muted);
+            max-width: 570px;
+            margin: auto;
+        }
+
+        .contact-buttons {
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        /* Footer */
 
         footer {
-            padding: 25px 0;
+            border-top: 1px solid var(--border);
+            padding: 27px 0;
             text-align: center;
-            color: #8391aa;
-            border-top: 1px solid #1e293b;
+            color: #8291aa;
             font-size: 0.85rem;
         }
 
-        @media (max-width: 700px) {
-            nav {
-                padding: 17px 0;
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            nav a {
-                margin: 0 14px 0 0;
-            }
-
-            .hero {
-                padding: 70px 0 55px;
-            }
-
-            h1 {
-                letter-spacing: -1.5px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
+        footer p + p {
+            margin-top: 5px;
         }
-    </style>
+</style>
 </head>
 
 <body>
 
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+    <!-- Navigation -->
+
     <header>
         <div class="container">
-            <nav>
-                <a href="#" class="logo">ARYAN<span>.AK</span></a>
+            <nav aria-label="Main navigation">
 
-                <div>
+                <a href="#" class="logo">
+                    ARYAN<span>.AK</span>
+                </a>
+
+                <div class="nav-links">
                     <a href="#about">About</a>
                     <a href="#skills">Skills</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
                 </div>
+
             </nav>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
+
+        <!-- Hero -->
+
         <section class="hero">
             <div class="container">
-                <span class="tag">✦ COMPUTER SCIENCE & ENGINEERING</span>
+                <div class="hero-content">
 
-                <h1>
-                    Hi, I'm Aryan.<br>
-                    <span class="gradient">Building my future in tech.</span>
-                </h1>
+                    <div class="availability">
+                        <span class="availability-dot"></span>
+                        CSE STUDENT · EXPLORING TECHNOLOGY
+                    </div>
 
-                <p>
-                    I'm a CSE student exploring software development,
-                    user-centered design, and cloud computing. I enjoy
-                    learning new technologies and turning ideas into
-                    practical projects.
-                </p>
+                    <p class="eyebrow">
+                        HELLO, WELCOME TO MY PORTFOLIO
+                    </p>
 
-                <div class="buttons">
-                    <a class="button primary" href="#projects">
-                        Explore My Projects ↗
-                    </a>
-                    <a class="button" href="#about">
-                        Get to Know Me
-                    </a>
+                    <h1>
+                        Hi, I'm Aryan.<br>
+                        <span class="gradient">
+                            Building my future in tech.
+                        </span>
+                    </h1>
+
+                    <p class="hero-description">
+                        I'm a Computer Science and Engineering student
+                        exploring software development, user-centered
+                        design, and cloud computing. I enjoy learning
+                        new technologies and turning ideas into
+                        practical projects.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#projects"
+                           class="button button-primary">
+                            Explore My Projects ↗
+                        </a>
+
+                        <a href="#contact"
+                           class="button button-secondary">
+                            Let's Connect
+                        </a>
+
+                    </div>
+
                 </div>
             </div>
         </section>
 
+        <!-- About -->
+
         <section id="about">
             <div class="container">
-                <span class="section-label">A little about me</span>
-                <h2>Learning today. Building for tomorrow.</h2>
 
-                <p class="muted">
-                    I'm pursuing a B.Tech in Computer Science and Engineering
-                    at IIMT College of Engineering. I'm developing my
-                    programming fundamentals while exploring UI/UX design,
-                    web technologies, and AWS cloud services.
-                    My goal is to keep learning, build useful projects,
-                    and grow as a technology professional.
-                </p>
+                <div class="section-heading">
+                    <span class="section-label">01 / ABOUT ME</span>
+                    <h2>Learning today. Building for tomorrow.</h2>
+                    <p class="section-description">
+                        A little about my education, interests, and
+                        journey into technology.
+                    </p>
+                </div>
+
+                <div class="about-panel">
+
+                    <div class="about-text">
+                        <h3>Curious mind. Growing skill set.</h3>
+
+                        <p>
+                            I'm pursuing a B.Tech in Computer Science
+                            and Engineering at IIMT College of Engineering.
+                            I'm developing my programming fundamentals
+                            while exploring UI/UX design, web technologies,
+                            and AWS cloud services.
+                        </p>
+
+                        <p>
+                            I believe in learning by building. My goal
+                            is to strengthen my technical knowledge,
+                            work on meaningful projects, and grow as
+                            a technology professional.
+                        </p>
+                    </div>
+
+                    <div class="education-card">
+
+                        <span class="small-label">
+                            Education
+                        </span>
+
+                        <h3>
+                            B.Tech — Computer Science & Engineering
+                        </h3>
+
+                        <p>
+                            IIMT College of Engineering
+                        </p>
+
+                        <p>
+                            2025 – 2029
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
         </section>
 
+        <!-- Skills -->
+
         <section id="skills">
             <div class="container">
-                <span class="section-label">My toolkit</span>
-                <h2>Skills I'm developing</h2>
 
-                <p class="muted">
-                    A growing foundation in programming and digital technology.
-                </p>
+                <div class="section-heading">
+                    <span class="section-label">02 / MY TOOLKIT</span>
+                    <h2>Skills I'm developing</h2>
+                    <p class="section-description">
+                        My growing foundation in programming,
+                        design, and digital technologies.
+                    </p>
+                </div>
 
                 <div class="skills">
+
                     <span class="skill">C Programming</span>
                     <span class="skill">Python Basics</span>
                     <span class="skill">C++ — Learning</span>
@@ -320,80 +626,152 @@
                     <span class="skill">Git Basics</span>
                     <span class="skill">AWS — Learning</span>
                     <span class="skill">Problem Solving</span>
+
                 </div>
+
             </div>
         </section>
+
+        <!-- Projects -->
 
         <section id="projects">
             <div class="container">
-                <span class="section-label">What I'm building</span>
-                <h2>Featured projects</h2>
 
-                <p class="muted">
-                    Projects that reflect my learning journey.
-                </p>
-
-                <div class="cards">
-                    <article class="card">
-                        <div class="card-icon">☁️</div>
-                        <h3>AWS Cloud Resume</h3>
-                        <p>
-                            A personal portfolio website that I'm building
-                            to learn cloud hosting, serverless services,
-                            and deployment on AWS.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">🎨</div>
-                        <h3>UI/UX Design</h3>
-                        <p>
-                            Exploring user-friendly interfaces, visual
-                            hierarchy, and design thinking through
-                            website design practice.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">💻</div>
-                        <h3>Programming Practice</h3>
-                        <p>
-                            Strengthening programming fundamentals through
-                            coding exercises and small projects.
-                        </p>
-                    </article>
+                <div class="section-heading">
+                    <span class="section-label">03 / MY WORK</span>
+                    <h2>Projects & explorations</h2>
+                    <p class="section-description">
+                        A reflection of what I'm learning,
+                        experimenting with, and building.
+                    </p>
                 </div>
+
+                <div class="projects-grid">
+
+                    <article class="project-card">
+
+                        <div class="project-icon"
+                             aria-hidden="true">
+                            ☁️
+                        </div>
+
+                        <h3>AWS Cloud Resume</h3>
+
+                        <p>
+                            A personal portfolio website developed
+                            to explore web technologies, cloud hosting,
+                            and serverless architecture.
+                        </p>
+
+                        <a class="project-link"
+                           href="https://github.com/aryanak-dev/aws-cloud-resume"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            View GitHub Repository ↗
+                        </a>
+
+                    </article>
+
+                    <article class="project-card">
+
+                        <div class="project-icon"
+                             aria-hidden="true">
+                            🎨
+                        </div>
+
+                        <h3>UI/UX Design</h3>
+
+                        <p>
+                            Exploring user-friendly interfaces,
+                            visual hierarchy, design thinking,
+                            and website design practice.
+                        </p>
+
+                    </article>
+
+                    <article class="project-card">
+
+                        <div class="project-icon"
+                             aria-hidden="true">
+                            💻
+                        </div>
+
+                        <h3>Programming Practice</h3>
+
+                        <p>
+                            Strengthening programming fundamentals
+                            through coding exercises and
+                            small practical projects.
+                        </p>
+
+                    </article>
+
+                </div>
+
             </div>
         </section>
+        <!-- Contact -->
 
         <section id="contact">
             <div class="container">
-                <div class="contact">
-                    <span class="section-label">Let's connect</span>
-                    <h2>Always open to learning and collaboration.</h2>
 
-                    <p class="muted">
+                <div class="contact-panel">
+
+                    <span class="section-label">
+                        04 / LET'S CONNECT
+                    </span>
+
+                    <h2>
+                        Good ideas start with a conversation.
+                    </h2>
+
+                    <p>
                         Interested in technology, creative ideas,
-                        and opportunities to grow.
+                        collaboration, and opportunities to learn
+                        and grow.
                     </p>
 
-                    <div class="buttons" style="justify-content:center">
-                        <a class="button primary"
-                           href="https://www.linkedin.com/"
+                    <div class="hero-buttons contact-buttons">
+
+                        <!-- Replace with your actual LinkedIn profile URL -->
+
+                        <a class="button button-primary"
+                           href="YOUR_LINKEDIN_PROFILE_URL"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Find me on LinkedIn ↗
+                            LinkedIn Profile ↗
                         </a>
+
+                        <a class="button button-secondary"
+                           href="https://github.com/aryanak-dev"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            GitHub Profile ↗
+                        </a>
+
                     </div>
+
                 </div>
+
             </div>
         </section>
+
     </main>
+
+    <!-- Footer -->
 
     <footer>
         <div class="container">
-            © <span id="year"></span> Aryan Kumar · Built with curiosity.
-            <p>Cloud Resume Challenge · Visitor count will be added later.</p>
+
+            <p>
+                © <span id="year"></span> Aryan Kumar.
+                Designed with curiosity.
+            </p>
+
+            <p>
+                Cloud Resume Challenge · Learning by building.
+            </p>
+
         </div>
     </footer>
 
